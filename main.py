@@ -20,7 +20,9 @@ async def main(target_mac=None):
             print(log_entry)
             log_file.write(log_entry)
 
-        scanner = BleakScanner(detection_callback)
+        scanner = BleakScanner()
+        scanner.register_detection_callback(detection_callback)
+        
         await scanner.start()
         
         if target_mac:
